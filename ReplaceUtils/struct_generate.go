@@ -9,8 +9,10 @@ import (
 	"strings"
 )
 
-//excel转换变量类型
-var types = map[string]string{
+/**
+	excel转换变量类型
+ */
+var Types = map[string]string{
 	"int":				"int",
 	"float":			"float64",
 	"array(int)":		"[]int",
@@ -19,7 +21,9 @@ var types = map[string]string{
 	"string":			"string",
 }
 
-//struct拼接所需字符
+/**
+	struct拼接所需字符
+ */
 const (
 	packAge = "package model\n\n"
 	titleBeFor = "type  "
@@ -27,8 +31,10 @@ const (
 	tailBeFor = "}"
 )
 
-//读取excel文件
-func ReadExcel(filepath,fileName string) () {
+/**
+	读取excel文件
+ */
+func ReplaceExcel(filepath,fileName string) () {
 	f, err := excelize.OpenFile(filepath)
 	if err != nil {
 		fmt.Println(err)
@@ -68,11 +74,13 @@ func ReadExcel(filepath,fileName string) () {
 
 }
 
-//拼接struct
+/**
+	拼接struct
+ */
 func splicingStruct(fileName string,name,typeData []string)string  {
 	str := packAge+titleBeFor+fileName+titleCenter
 	for i := range name {
-		str += "   "+capitalize(name[i])+"   "+types[typeData[i]]+"\n"
+		str += "   "+capitalize(name[i])+"   "+Types[typeData[i]]+"\n"
 	}
 	str+=tailBeFor
 	fmt.Println(str)
@@ -80,7 +88,9 @@ func splicingStruct(fileName string,name,typeData []string)string  {
 }
 
 
-//字符首字母大写转换
+/**
+	字符首字母大写转换
+ */
 func capitalize(str string) string {
 	var upperStr string
 	vv := []rune(str)   // 后文有介绍
@@ -100,6 +110,9 @@ func capitalize(str string) string {
 	return upperStr
 }
 
+/**
+	读取文件及文件夹
+ */
 func GetAllExcel(testFilePath string)  {
 	dir, err := ioutil.ReadDir(testFilePath)
 	if err != nil{
@@ -111,7 +124,7 @@ func GetAllExcel(testFilePath string)  {
 		}else {
 			if !strings.HasPrefix(fileOs.Name(), "~$") && strings.HasSuffix(fileOs.Name(),".xlsx"){
 				fmt.Println("开始读取:",fileOs.Name())
-				ReadExcel(testFilePath+"/"+fileOs.Name(), strings.TrimSuffix(fileOs.Name(), ".xlsx"))
+				ReplaceExcel(testFilePath+"/"+fileOs.Name(), strings.TrimSuffix(fileOs.Name(), ".xlsx"))
 			}
 		}
 	}
