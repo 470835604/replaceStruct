@@ -13,7 +13,7 @@
     <li>string</li>
 </ul>
 <h1>使用方法</h1>
-     <p>去获取github.com/470835604/replaceStruct</p>
+     <p>去获取<a href="github.com/470835604/replaceStruct">github.com/470835604/replaceStruct</a></p>
 <h1>使用</h1>
 
 ```
