@@ -1,8 +1,8 @@
 package main
 
 import (
+	"github.com/Byfengfeng/replaceStruct/ReplaceUtils"
 	"os"
-	"testProject/ReplaceUtils"
 )
 
 func main() {
