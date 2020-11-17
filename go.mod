@@ -1,4 +1,4 @@
-module testProject
+module github.com/Byfengfeng/replaceStruct
 
 go 1.15
 
